@@ -16,4 +16,13 @@ import { CardComponent } from '@phlex/ui';
 export default class MoviesListComponent {
   public readonly user$ = inject(AuthService).user$;
   public readonly movies$ = inject(TVDBService).fetchAllMovies();
+
+  constructor() {
+    console.log('MoviesListComponent constructor');
+    if (this.user$ != null) {
+      this.user$.subscribe((user) => {
+        console.log('MoviesListComponent user$ subscribe', user);
+      });
+    }
+  }
 }
